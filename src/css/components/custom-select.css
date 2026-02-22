@@ -1,0 +1,216 @@
+/* custom-select.css * Merged from src/css/components/select.css * Implements Elementary OS styling for the custom dropdown */
+:root {
+    --cs-pr-clear-button: 0px;
+    --cs-pr-caret: 0px;
+    --cs-pr-min: .75rem;
+}
+
+/* Wrapper */
+.custom-select-wrapper {
+    position: relative;
+    width: auto;
+    display: inline-block;
+    min-width: 120px;
+}
+
+/* Trigger (Control) - Adapted from select.css .ts-control */
+.custom-select-trigger {
+    border: 1px solid var(--border-normal, #d0d0d0);
+    /* Fallback if vars missing */
+    border-radius: var(--radius-sm, 3px);
+    padding: 0.15rem 28px 0.15rem 0.92rem;
+    /* padding-right 28px from select.css overrides */
+
+    /* Subtle gradient like Elementary OS buttons */
+    background-color: var(--bg-primary, #fff);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+
+    color: var(--fg-primary, #303030);
+    box-shadow: var(--shadow-gtk-outset, none);
+
+    font-family: inherit;
+    font-size: var(--font-size-sm, 13px);
+    line-height: 1.85rem;
+    transition: var(--transition-standard, all 0.2s);
+    min-height: 2.31rem;
+
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+/* Hover state */
+.custom-select-trigger:hover {
+    background-color: #fcfcfc;
+    border-color: var(--border-strong, #b0b0b0);
+}
+
+/* Focus/Open State */
+.custom-select-wrapper.focus .custom-select-trigger,
+.custom-select-wrapper.input-active .custom-select-trigger {
+    border-color: var(--accent-primary, #3689e6);
+    box-shadow: 0 0 0 2px rgba(54, 137, 230, 0.15), var(--shadow-gtk-outset, none);
+    outline: none;
+
+    /* Active background logic from select.css .ts-control.dropdown-active */
+    background-color: var(--bg-primary, #fff);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+}
+
+/* Active/Pressed state */
+.custom-select-trigger:active {
+    background: var(--bg-glass-strong, #e8e8e8);
+    box-shadow: var(--shadow-inset, inset 0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* Value Item */
+/* Dropdown Container */
+.custom-select-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    border: 1px solid var(--border-strong, #b0b0b0);
+    border-radius: var(--radius-md, 3px);
+    background-color: var(--bg-primary, #fff);
+    color: var(--fg-primary, #303030);
+
+    margin-top: 0.15rem;
+    box-shadow: var(--shadow-md, 0 4px 6px rgba(0, 0, 0, 0.1));
+    overflow: hidden;
+    padding: 0.31rem 0;
+
+    animation: custom-select-fade 0.15s ease-out;
+    box-sizing: border-box;
+    display: none;
+    /* Hidden by default */
+}
+
+@keyframes custom-select-fade {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes custom-select-fade-out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+}
+
+.custom-select-dropdown.closing {
+    animation: custom-select-fade-out 0.15s ease-out forwards;
+    display: block !important;
+}
+
+.custom-select-value {
+    vertical-align: baseline;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+
+    font-weight: var(--font-weight-normal, normal);
+    color: var(--fg-primary, #303030);
+    padding: 0;
+    margin: 0;
+
+    transition: opacity 0.2s ease;
+}
+
+.custom-select-value.changing {
+    opacity: 0;
+}
+
+.custom-select-content {
+    overflow: hidden auto;
+    max-height: 200px;
+    scroll-behavior: smooth;
+}
+
+/* Options */
+.custom-select-option {
+    padding: 0.46rem 0.92rem;
+    cursor: pointer;
+    transition: background-color 0.1s ease-out;
+    font-size: var(--font-size-sm, 13px);
+    color: var(--fg-primary, #303030);
+    line-height: 1.4;
+}
+
+/* Hover/Active Option */
+.custom-select-option:hover,
+.custom-select-option.active {
+    background-color: var(--bg-glass, #f5fafd);
+    color: var(--fg-primary, #303030);
+}
+
+/* Selected Option */
+.custom-select-option.selected {
+    font-weight: var(--font-weight-bold, bold);
+    color: var(--accent-primary, #3689e6);
+}
+
+.custom-select-option.selected.active,
+.custom-select-option.selected:hover {
+    background-color: var(--bg-glass-strong, #e6f2fa);
+    color: var(--accent-hover, #2173d1);
+}
+
+/* Chevron Icon */
+.custom-select-trigger::after {
+    content: '';
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+
+    /* Using the local chevron asset */
+    background-image: url("/assets/icons/chevron-down.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.8;
+    pointer-events: none;
+    border: none;
+    /* Ensure no border from default ::after logic if any */
+}
+
+/* Rotating Chevron */
+.custom-select-wrapper.focus .custom-select-trigger::after,
+.custom-select-wrapper.input-active .custom-select-trigger::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+/* Disabled State */
+.custom-select-wrapper.disabled .custom-select-trigger {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: var(--bg-secondary, #fafafa);
+}
+
+/* Utilities */
+.custom-select-wrapper.hidden {
+    display: none;
+}

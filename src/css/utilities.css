@@ -1,0 +1,59 @@
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-small {
+    font-size: var(--font-size-sm);
+}
+
+.text-dim {
+    color: var(--fg-dim);
+}
+
+/* Utility Sizing */
+.btn-icon-xs {
+    padding: var(--spacing-xs);
+    min-width: 1.85rem;
+    /* ~24px */
+    min-height: 1.85rem;
+}
+
+.btn-sm {
+    padding: 0.15rem 0.62rem;
+    /* ~2px 8px */
+    font-size: var(--font-size-sm);
+}
+
+/* Icon Sizes - GTK Standard Icons */
+.icon-xs {
+    width: 1.08rem;
+    /* ~14px */
+    height: 1.08rem;
+}
+
+.icon-sm {
+    width: 1.23rem;
+    /* ~16px */
+    height: 1.23rem;
+}
+
+.icon-md {
+    width: 1.54rem;
+    /* ~20px */
+    height: 1.54rem;
+}
+
+.icon-lg {
+    width: 1.85rem;
+    /* ~24px */
+    height: 1.85rem;
+}

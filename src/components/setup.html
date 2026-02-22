@@ -1,0 +1,54 @@
+<div class="setup-screen hidden" id="setup-screen">
+    <div class="setup-content">
+        <img src="assets/icons/app-icon.svg" class="setup-icon" alt="">
+        <h2>Welcome to Chord</h2>
+        <p class="setup-description">
+            To download music and videos, Chord needs to install some components. <strong>For best support, please sign
+                into your video provider (e.g. YouTube) in Firefox.</strong>
+        </p>
+
+        <div class="setup-components">
+            <div class="component-item" id="setup-ytdlp">
+                <span class="component-name">yt-dlp</span>
+                <span class="component-status" id="ytdlp-status">Not installed</span>
+            </div>
+            <div class="component-item" id="setup-ffmpeg">
+                <span class="component-name">ffmpeg</span>
+                <span class="component-status" id="ffmpeg-status">Not installed</span>
+            </div>
+            <div class="component-item" id="setup-deno">
+                <span class="component-name">deno</span>
+                <span class="component-status" id="deno-status">Not installed</span>
+            </div>
+        </div>
+
+        <div class="setup-progress hidden" id="setup-progress">
+            <div class="progress-bar">
+                <div class="progress-bar-fill active" id="setup-progress-bar" style="width: 0%"></div>
+            </div>
+            <span class="setup-progress-text" id="setup-progress-text">Downloading...</span>
+        </div>
+
+        <div class="setup-options">
+            <label class="checkbox-container">
+                <input type="checkbox" id="manual-deps-checkbox">
+                <span class="checkmark"></span>
+                <span>I will manually place dependencies in <code>custombin/</code></span>
+            </label>
+        </div>
+
+        <div id="manual-instructions" class="setup-instructions hidden">
+            <p>Place these files in the <code>custombin</code> folder:</p>
+            <ul class="manual-files-grid">
+                <li>yt-dlp.exe</li>
+                <li>ffmpeg.exe</li>
+                <li>ffprobe.exe</li>
+                <li>deno.exe</li>
+            </ul>
+        </div>
+
+        <button class="btn btn-suggested" id="install-btn">
+            <span>Install Components</span>
+        </button>
+    </div>
+</div>

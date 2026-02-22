@@ -1,0 +1,41 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Project specific ignore folder
+ignore/
+
+# Tauri/Rust
+src-tauri/target/
+src-tauri/gen/
+src-tauri/check_output.txt
+src-tauri/clippy_log.txt
+
+# Documentation/Analysis
+# (Moved to ignore/)
+
+# Windows/Backups
+backup.bat
+backup1.bat
+

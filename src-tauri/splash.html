@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Chord</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #1a1a1a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            overflow: hidden;
+        }
+        
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .loader-container {
+            position: relative;
+            width: 60px;
+            height: 60px;
+        }
+        
+        .loader {
+            width: 100%;
+            height: 100%;
+            animation: spin 1.2s linear infinite;
+            filter: brightness(1.5);
+        }
+        
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .loading-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="icons/128x128.png" alt="Chord" class="app-icon">
+        <div class="loader-container">
+            <img src="../src/assets/icons/loading.svg" alt="Loading" class="loader">
+        </div>
+        <div class="loading-text">Loading Chord...</div>
+    </div>
+</body>
+</html>

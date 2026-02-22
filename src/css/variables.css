@@ -1,0 +1,179 @@
+/* Chord - Variables */
+:root {
+    font-size: 13px;
+    /* Elementary OS Color Palette */
+    --strawberry-100: #ff8c82;
+    --strawberry-300: #ed5353;
+    --strawberry-500: #c6262e;
+    --strawberry-700: #a10705;
+    --strawberry-900: #7a0000;
+
+    --orange-100: #ffc27d;
+    --orange-300: #ffa154;
+    --orange-500: #f37329;
+    --orange-700: #cc3b02;
+    --orange-900: #a62100;
+
+    --banana-100: #fff394;
+    --banana-300: #ffe16b;
+    --banana-500: #f9c440;
+    --banana-700: #d48e15;
+    --banana-900: #ad5f00;
+
+    --lime-100: #d1ff82;
+    --lime-300: #9bdb4d;
+    --lime-500: #68b723;
+    --lime-700: #3a9104;
+    --lime-900: #206b00;
+
+    --mint-100: #89ffdd;
+    --mint-300: #43d6b5;
+    --mint-500: #28bca3;
+    --mint-700: #0e9a83;
+    --mint-900: #007367;
+
+    --blueberry-100: #8cd5ff;
+    --blueberry-300: #64baff;
+    --blueberry-500: #3689e6;
+    --blueberry-700: #0d52bf;
+    --blueberry-900: #002e99;
+
+    --bubblegum-100: #fe9ab8;
+    --bubblegum-300: #f4679d;
+    --bubblegum-500: #de3e80;
+    --bubblegum-700: #bc245d;
+    --bubblegum-900: #910e38;
+
+    --grape-100: #e4c6fa;
+    --grape-300: #cd9ef7;
+    --grape-500: #a56de2;
+    --grape-700: #7239b3;
+    --grape-900: #452981;
+
+    --silver-100: #fafafa;
+    --silver-300: #d4d4d4;
+    --silver-500: #abacae;
+    --silver-700: #7e8087;
+    --silver-900: #555761;
+
+    --slate-100: #95a3ab;
+    --slate-300: #667885;
+    --slate-500: #485a6c;
+    --slate-700: #273445;
+    --slate-900: #0e141f;
+
+    --black-100: #666666;
+    --black-300: #4d4d4d;
+    --black-500: #333333;
+    --black-700: #1a1a1a;
+    --black-900: #000000;
+
+    /* Semantic Tokens (Light Mode - Default) */
+    --bg-primary: #ffffff;
+    --bg-secondary: var(--silver-100);
+    --bg-tertiary: var(--silver-300);
+    --bg-glass: rgba(0, 0, 0, 0.05);
+    --bg-glass-strong: rgba(0, 0, 0, 0.08);
+
+    --fg-primary: var(--black-500);
+    --fg-secondary: var(--slate-500);
+    --fg-dim: var(--silver-500);
+    --fg-on-accent: #ffffff;
+
+    --border-dim: rgba(0, 0, 0, 0.1);
+    --border-normal: rgba(0, 0, 0, 0.15);
+    --border-strong: rgba(0, 0, 0, 0.2);
+
+    --accent-primary: var(--blueberry-500);
+    --accent-secondary: var(--blueberry-300);
+    --accent-hover: var(--blueberry-700);
+
+    --success-primary: var(--lime-500);
+    --error-primary: var(--strawberry-500);
+    --warning-primary: var(--orange-500);
+
+    /* Shadows & Fidelity */
+    --shadow-sm: 0 1px 1px rgba(0, 0, 0, 0.07), 0 1px 2px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 3px 4px rgba(0, 0, 0, 0.15), 0 3px 3px -3px rgba(0, 0, 0, 0.35);
+    --shadow-inset: inset 0 1px 1px rgba(0, 0, 0, 0.05), inset 0 0 1px 1px rgba(0, 0, 0, 0.05);
+
+    /* Native GTK Fidelity Tokens */
+    --shadow-gtk-outset: inset 0 1px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.15);
+    --shadow-gtk-inset: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    --text-shadow-etched: 0 1px rgba(255, 255, 255, 0.5);
+    --icon-shadow-etched: 0 1px rgba(255, 255, 255, 0.5);
+
+    /* Typography */
+    --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+    --font-size-base: 1rem;
+    /* 13px */
+    --font-size-sm: 0.846rem;
+    /* ~11px */
+    --font-size-md: 1.077rem;
+    /* ~14px */
+    --font-size-lg: 1.23rem;
+    /* ~16px */
+    --font-size-xl: 1.538rem;
+    /* ~20px */
+
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 600;
+
+    /* Spacing & Radius */
+    --radius-sm: 0.23rem;
+    /* ~3px */
+    --radius-md: 0.46rem;
+    /* ~6px */
+    --radius-round: 50%;
+    /* Already semantic or 50% */
+
+    --spacing-xs: 0.31rem;
+    /* ~4px */
+    --spacing-sm: 0.46rem;
+    /* ~6px */
+    --spacing-md: 0.92rem;
+    /* ~12px */
+    --spacing-lg: 1.38rem;
+    /* ~18px */
+    --spacing-xl: 1.85rem;
+    /* ~24px */
+    --spacing-2xl: 2.46rem;
+    /* ~32px */
+
+    /* Transitions */
+    --transition-standard: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Legacy Map (For backwards compatibility during refactor) */
+    --bg-color: var(--bg-primary);
+    --fg-color: var(--fg-primary);
+    --border-color: var(--border-normal);
+    --border-color-strong: var(--border-strong);
+    --accent-color: var(--accent-primary);
+    --error-color: var(--error-primary);
+    --success-color: var(--success-primary);
+    --shadow-1: var(--shadow-sm);
+    --shadow-2: var(--shadow-md);
+    --inset-shadow: var(--shadow-inset);
+}
+
+/* Dark Mode (Future) */
+[data-theme="dark"] {
+    --bg-primary: var(--slate-900);
+    --bg-secondary: #1a1e26;
+    --bg-tertiary: var(--slate-700);
+    --bg-glass: rgba(255, 255, 255, 0.05);
+    --bg-glass-strong: rgba(255, 255, 255, 0.08);
+
+    --fg-primary: #e5e9ef;
+    --fg-secondary: var(--silver-500);
+    --fg-dim: var(--slate-300);
+
+    --border-dim: rgba(255, 255, 255, 0.05);
+    --border-normal: rgba(255, 255, 255, 0.1);
+    --border-strong: rgba(255, 255, 255, 0.15);
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.5);
+    --shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}

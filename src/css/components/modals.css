@@ -1,0 +1,227 @@
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.modal {
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    min-width: 16rem;
+    max-width: 90%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border-dim);
+}
+
+.modal-header h3 {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    color: var(--fg-primary);
+    text-shadow: var(--text-shadow-etched);
+}
+
+.modal-content {
+    padding: 8px 12px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.settings-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.settings-section:last-child {
+    margin-bottom: 0;
+}
+
+.settings-section h4 {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--fg-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Status Text */
+.status-downloading {
+    color: var(--accent-primary);
+}
+
+.status-complete {
+    color: var(--success-primary);
+}
+
+.status-error {
+    color: var(--error-primary);
+}
+
+.status-pending {
+    color: var(--fg-dim);
+}
+
+/* Settings Specific - Elementary OS Style */
+.settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.62rem;
+    /* ~8px */
+}
+
+.settings-header h4 {
+    margin: 0;
+    color: var(--fg-secondary);
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.04rem;
+}
+
+/* List Groups & rows (Elementary OS style) */
+.list-group {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-normal);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.list-row {
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    gap: var(--spacing-md);
+    min-height: 2.2rem;
+    transition: var(--transition-standard);
+}
+
+.list-row:not(:last-child) {
+    border-bottom: 1px solid var(--border-dim);
+}
+
+.list-row:hover {
+    background: var(--bg-glass);
+}
+
+.list-row-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.75;
+    flex-shrink: 0;
+}
+
+.list-row-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.list-row-title {
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-base);
+    color: var(--fg-primary);
+}
+
+.list-row-subtitle {
+    font-size: var(--font-size-sm);
+    color: var(--fg-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.list-row-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.list-row-subtitle.status-complete {
+    color: var(--success-primary);
+}
+
+/* Settings Tabs */
+.settings-tabs {
+    display: flex;
+    justify-content: center;
+    padding: var(--spacing-sm) 12px;
+    border-bottom: 1px solid var(--border-dim);
+}
+
+.settings-tabs .media-type-switcher {
+    margin: 0;
+    align-self: center;
+}
+
+
+
+.settings-modal .modal {
+    width: 26rem;
+    height: 30rem;
+    /* Further reduced height */
+}
+
+.settings-modal .modal-content {
+    padding: 12px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: stable both-edges;
+}
+
+.tab-pane.hidden {
+    display: none;
+}
+
+/* Confirmation Modal (Ultra-Compact) */
+.confirm-modal {
+    padding: 8px;
+    text-align: center;
+    max-width: 300px;
+}
+
+.confirm-modal .title-2 {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--fg-primary);
+}
+
+.confirm-modal p {
+    font-size: var(--font-size-sm);
+    color: var(--fg-secondary);
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+
+.modal-actions.response-area {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    padding: 8px;
+    padding-top: 0;
+}
+
+.modal-actions.response-area button {
+    min-width: 80px;
+    padding: 4px 12px;
+    font-size: var(--font-size-sm);
+}

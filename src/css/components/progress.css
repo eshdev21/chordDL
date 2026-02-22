@@ -1,0 +1,65 @@
+.progress-bar {
+    height: 0.46rem;
+    /* ~6px */
+    background-color: var(--bg-glass);
+    border-radius: 0.15rem;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--border-dim);
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: var(--accent-primary);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+    border-radius: 0.15rem;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    will-change: width, background-position;
+}
+
+/* Official GTK Progress Shimmer */
+.progress-bar-fill.active {
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0)),
+        linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25) 60%, rgba(255, 255, 255, 0));
+    background-size: cover, 3.69rem 100%;
+    background-repeat: no-repeat;
+    animation: progress 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Progress States */
+.progress-bar-fill.success {
+    background-color: var(--success-primary);
+}
+
+.progress-bar-fill.error {
+    background-color: var(--error-primary);
+}
+
+.progress-bar-fill.warning {
+    background-color: var(--warning-primary);
+}
+
+/* Global Progress Container */
+#global-progress-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    margin-top: auto;
+}
+
+#global-progress-container:empty {
+    display: none;
+}
+
+.global-progress .progress-bar {
+    margin-bottom: var(--spacing-xs);
+}
+
+.global-progress-text {
+    font-size: var(--font-size-sm);
+    color: var(--fg-secondary);
+    display: block;
+    text-align: center;
+}

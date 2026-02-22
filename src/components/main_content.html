@@ -1,0 +1,127 @@
+<main class="main-content hidden" id="main-content">
+    <!-- Toolbar Row -->
+    <div class="toolbar-row">
+        <!-- Media Type Switcher (Audio / Video) -->
+        <div class="media-type-switcher linked" id="media-type-switcher">
+            <button class="btn active" data-type="audio" id="audio-tab">
+                <img src="assets/icons/folder-music-symbolic.svg" class="icon-sm" alt="">
+                <span>Audio</span>
+            </button>
+            <button class="btn" data-type="video" id="video-tab">
+                <img src="assets/icons/folder-videos-symbolic.svg" class="icon-sm" alt="">
+                <span>Video</span>
+            </button>
+        </div>
+
+        <!-- Mode Switcher (Moved here) -->
+        <div class="mode-switcher linked" id="mode-switcher">
+            <button class="btn mode-btn active" data-mode="single" title="Single Track">
+                <img src="assets/icons/mode-single.svg" class="icon-sm" alt="">
+            </button>
+            <button class="btn mode-btn" data-mode="batch" title="Multiple URLs">
+                <img src="assets/icons/list-add.svg" class="icon-sm" alt="">
+            </button>
+            <button class="btn mode-btn" data-mode="playlist" title="Playlist">
+                <img src="assets/icons/playlist.svg" class="icon-sm" alt="">
+            </button>
+        </div>
+    </div>
+
+    <!-- Update / Missing Dependencies Banner -->
+    <div class="update-banner hidden" id="update-banner">
+        <span id="update-banner-text">yt-dlp update available</span>
+        <button class="btn btn-flat" id="update-banner-btn">Update Now</button>
+    </div>
+
+    <!-- URL Input -->
+    <div class="form-group">
+        <label class="form-label">Video URL <span id="url-mode-tag" class="mode-tag"></span></label>
+        <div class="entry" id="url-entry">
+            <input type="text" id="url-input" placeholder="Paste video URL here..." autocomplete="off">
+            <button class="btn btn-flat btn-icon" id="paste-btn" title="Paste from clipboard">
+                <img src="assets/icons/paste.svg" class="icon-sm" alt="Paste">
+            </button>
+        </div>
+
+        <!-- Batch Mode Textarea (hidden by default) -->
+        <div class="entry entry-multiline hidden" id="batch-entry">
+            <textarea id="batch-input" placeholder="Paste multiple URLs, one per line..."></textarea>
+        </div>
+    </div>
+
+    <div class="options-row">
+        <select id="format-select" title="File Format">
+            <!-- Populated by JS -->
+        </select>
+
+        <select class="hidden" id="quality-select" title="Video Quality">
+            <option value="360">360p</option>
+            <option value="480">480p</option>
+            <option value="720">720p</option>
+            <option value="1080" selected>1080p</option>
+            <option value="1440">2K (1440p)</option>
+            <option value="2160">4K (2160p)</option>
+            <option value="best">Best Quality</option>
+        </select>
+
+        <div class="path-display" id="path-display" title="Click to change download folder">
+            <img src="assets/icons/folder-music.svg" alt="">
+            <span id="path-text">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Download Button -->
+    <div class="action-row">
+        <button class="btn btn-suggested btn-download" id="download-btn">
+            <img src="assets/icons/action-download.svg" class="icon-md" alt="">
+            <span id="download-btn-text">Download Audio</span>
+        </button>
+    </div>
+
+    <!-- Queue Section -->
+    <div class="queue-section">
+        <div class="queue-header">
+            <!-- Tab Switcher -->
+            <div class="queue-tabs linked">
+                <button class="queue-tab active" id="tab-downloads">Downloads</button>
+                <button class="queue-tab" id="tab-terminal">Terminal</button>
+            </div>
+
+            <div class="queue-actions">
+                <!-- Terminal Controls (Hidden by default) -->
+                <div class="terminal-controls hidden" id="terminal-controls">
+                    <button class="btn btn-flat btn-icon" id="terminal-autoscroll-btn" title="Auto-scroll: ON">
+                        <img src="assets/icons/autoscroll.svg" class="icon-sm" alt="Scroll">
+                    </button>
+                    <button class="btn btn-flat btn-icon" id="terminal-clear-btn" title="Clear Logs">
+                        <img src="assets/icons/action-clear.svg" class="icon-sm" alt="Clear">
+                    </button>
+                </div>
+
+                <button class="btn btn-flat btn-icon" id="clear-btn" title="Clear completed">
+                    <img src="assets/icons/action-clear.svg" class="icon-sm" alt="Clear">
+                </button>
+            </div>
+        </div>
+
+        <!-- Downloads View -->
+        <div class="queue-container" id="queue-container">
+            <div class="queue-empty" id="queue-empty">
+                <img src="assets/icons/action-download.svg" alt="">
+                <span>No downloads yet</span>
+            </div>
+        </div>
+
+        <!-- Terminal View (Hidden by default) -->
+        <div class="terminal-view hidden" id="terminal-view">
+            <div class="terminal-output" id="terminal-output">
+                <div class="log-line system">Waiting for logs...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dynamic Progress Bar Container (for reinstalls/updates - one bar per binary) -->
+    <div id="global-progress-container"></div>
+
+    <!-- Auth status indicator removed -->
+</main>

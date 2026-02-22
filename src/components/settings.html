@@ -1,0 +1,224 @@
+<div class="modal-overlay settings-modal hidden" id="settings-modal">
+    <div class="modal">
+        <div class="modal-header">
+            <h3>Settings</h3>
+            <button class="btn btn-flat btn-icon" id="close-settings-btn">
+                <img src="assets/icons/close.svg" class="icon-sm" alt="Close">
+            </button>
+        </div>
+        <div class="settings-tabs">
+            <div class="media-type-switcher linked">
+                <button class="btn active" id="settings-tab-system-btn">
+                    <img src="assets/icons/settings.svg" class="icon-sm" alt="">
+                    <span>System</span>
+                </button>
+                <button class="btn" id="settings-tab-app-btn">
+                    <img src="assets/icons/app-icon-24.svg" class="icon-sm" alt="">
+                    <span>App</span>
+                </button>
+                <button class="btn" id="settings-tab-cookies-btn">
+                    <img src="assets/icons/settings.svg" class="icon-sm" alt="">
+                    <span>Cookies</span>
+                </button>
+            </div>
+        </div>
+        <div class="modal-content">
+
+            <!-- System Tab -->
+            <div id="settings-tab-system-pane" class="tab-pane">
+                <div class="settings-section">
+                    <div class="settings-header">
+                        <h4>Dependencies</h4>
+                        <button class="btn btn-flat btn-icon-xs" id="check-updates-btn" title="Check for updates">
+                            <img src="assets/icons/view-refresh-24.svg" class="icon-md" id="check-updates-icon"
+                                alt="Check">
+                        </button>
+                    </div>
+
+                    <div class="list-group">
+                        <div class="list-row">
+                            <div class="list-row-icon">
+                                <img src="assets/icons/settings.svg" class="icon-sm" alt="">
+                            </div>
+                            <div class="list-row-content">
+                                <div class="list-row-title">yt-dlp</div>
+                                <div class="list-row-subtitle" id="settings-ytdlp-version">Checking...</div>
+                            </div>
+                            <div class="list-row-actions">
+                                <button class="btn btn-flat btn-sm" id="settings-update-btn" disabled>Update</button>
+                                <button class="btn btn-flat btn-icon-xs" id="reinstall-ytdlp-btn"
+                                    title="Force Reinstall">
+                                    <img src="assets/icons/action-download.svg" class="icon-xs" alt="Reinstall">
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="list-row">
+                            <div class="list-row-icon">
+                                <img src="assets/icons/settings.svg" class="icon-sm" alt="">
+                            </div>
+                            <div class="list-row-content">
+                                <div class="list-row-title">ffprobe</div>
+                                <div class="list-row-subtitle status-complete" id="settings-ffprobe-status">✓ Installed
+                                </div>
+                            </div>
+                            <div class="list-row-actions">
+                            </div>
+                        </div>
+
+                        <div class="list-row">
+                            <div class="list-row-icon">
+                                <img src="assets/icons/settings.svg" class="icon-sm" alt="">
+                            </div>
+                            <div class="list-row-content">
+                                <div class="list-row-title">ffmpeg</div>
+                                <div class="list-row-subtitle status-complete" id="settings-ffmpeg-status">✓ Installed
+                                </div>
+                            </div>
+                            <div class="list-row-actions">
+                                <button class="btn btn-flat btn-icon-xs" id="reinstall-ffmpeg-btn"
+                                    title="Force Reinstall">
+                                    <img src="assets/icons/action-download.svg" class="icon-xs" alt="Reinstall">
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="list-row">
+                            <div class="list-row-icon">
+                                <img src="assets/icons/settings.svg" class="icon-sm" alt="">
+                            </div>
+                            <div class="list-row-content">
+                                <div class="list-row-title">deno</div>
+                                <div class="list-row-subtitle" id="settings-deno-version">Checking...</div>
+                            </div>
+                            <div class="list-row-actions">
+                                <button class="btn btn-flat btn-sm" id="settings-deno-update-btn" disabled>Up to
+                                    date</button>
+                                <button class="btn btn-flat btn-icon-xs" id="reinstall-deno-btn"
+                                    title="Force Reinstall">
+                                    <img src="assets/icons/action-download.svg" class="icon-xs" alt="Reinstall">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h4>Diagnostics</h4>
+                    <div class="list-group">
+                        <div class="list-row">
+                            <div class="list-row-icon">
+                                <img src="assets/icons/settings.svg" class="icon-sm" alt="">
+                            </div>
+                            <div class="list-row-content">
+                                <div class="list-row-title">Custom Dependencies Mode</div>
+                                <div class="list-row-subtitle">Use manually placed binaries in <code>custombin/</code>
+                                </div>
+                            </div>
+                            <div class="list-row-actions">
+                                <label class="switch">
+                                    <input type="checkbox" id="custom-deps-toggle">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="list-row">
+                            <div class="list-row-icon">
+                                <img src="assets/icons/settings.svg" class="icon-sm" alt="">
+                            </div>
+                            <div class="list-row-content">
+                                <div class="list-row-title">Debug Logging</div>
+                                <div class="list-row-subtitle">Record app and tool activity to files</div>
+                            </div>
+                            <div class="list-row-actions">
+                                <label class="switch">
+                                    <input type="checkbox" id="debug-logging-toggle">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="list-row">
+                            <div class="list-row-icon">
+                                <img src="assets/icons/folder-music-symbolic.svg" class="icon-sm" alt="">
+                            </div>
+                            <div class="list-row-content">
+                                <div class="list-row-title">Application Logs</div>
+                                <div class="list-row-subtitle">Find log files in Explorer</div>
+                            </div>
+                            <div class="list-row-actions">
+                                <button class="btn btn-flat btn-sm" id="open-logs-btn">Open Logs Folder</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cookies Tab -->
+            <div id="settings-tab-cookies-pane" class="tab-pane hidden">
+                <div class="settings-section">
+                    <h4>COOKIES</h4>
+                    <div class="list-group">
+
+                        <div class="list-row">
+                            <div class="list-row-icon">
+                                <img src="assets/icons/settings.svg" class="icon-sm" alt="">
+                            </div>
+                            <div class="list-row-content">
+                                <div class="list-row-title">Use Firefox cookies</div>
+                                <div class="list-row-subtitle">Enable for age-restricted or private videos</div>
+                            </div>
+                            <div class="list-row-actions">
+                                <label class="switch">
+                                    <input type="checkbox" id="auth-enabled-toggle">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="list-row">
+                            <div class="list-row-icon">
+                                <img src="assets/icons/view-refresh-24.svg" class="icon-sm" alt="">
+                            </div>
+                            <div class="list-row-content">
+                                <div class="list-row-title">Check Status</div>
+                                <div class="list-row-subtitle">Verify cookies are valid in Firefox</div>
+                            </div>
+                            <div class="list-row-actions">
+                                <button class="btn btn-flat btn-sm" id="settings-check-auth-btn">Check Status</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- App Tab -->
+            <div id="settings-tab-app-pane" class="tab-pane hidden">
+                <div class="settings-section">
+                    <h4>Default Audio Folder</h4>
+                    <div class="path-display" id="settings-path-display">
+                        <img src="assets/icons/folder-music.svg" alt="">
+                        <span id="settings-path-text">~/Music</span>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h4>Default Video Folder</h4>
+                    <div class="path-display" id="settings-video-path-display">
+                        <img src="assets/icons/folder-videos.svg" alt="">
+                        <span id="settings-video-path-text">~/Videos</span>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h4>Max Concurrent Downloads</h4>
+                    <div class="setting-row">
+                        <input type="range" id="concurrent-limit-slider" min="1" max="4" value="3" class="scale">
+                        <span id="concurrent-limit-value">3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

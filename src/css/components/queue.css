@@ -1,0 +1,241 @@
+/* Queue Section */
+.queue-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    min-height: 0;
+    margin-top: var(--spacing-sm);
+}
+
+.queue-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    height: 2.46rem;
+    /* ~32px */
+}
+
+.queue-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--fg-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Queue Container - ListView Style */
+.queue-container {
+    flex: 1;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-normal);
+    border-radius: var(--radius-md);
+    overflow-y: auto;
+    box-shadow: var(--shadow-inset);
+    contain: layout inline-size;
+}
+
+.queue-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: var(--spacing-xl);
+    color: var(--fg-dim);
+    text-align: center;
+}
+
+.queue-empty img {
+    width: 3.69rem;
+    /* ~48px */
+    height: 3.69rem;
+    opacity: 0.4;
+    margin-bottom: var(--spacing-md);
+}
+
+/* Queue Item */
+.queue-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-dim);
+    transition: var(--transition-standard);
+}
+
+.queue-item:last-child {
+    border-bottom: none;
+}
+
+.queue-item:hover {
+    background-color: var(--bg-glass);
+}
+
+.queue-item-icon {
+    width: 3.08rem;
+    /* ~40px */
+    height: 3.08rem;
+    border-radius: var(--radius-sm);
+    background-color: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.queue-item-icon img {
+    width: 1.85rem;
+    /* ~24px */
+    height: 1.85rem;
+}
+
+.queue-item-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.queue-item-title {
+    font-weight: var(--font-weight-medium);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--fg-primary);
+}
+
+.queue-item-meta {
+    font-size: var(--font-size-sm);
+    color: var(--fg-secondary);
+}
+
+.queue-item-meta.status-error {
+    color: var(--error-primary);
+}
+
+.queue-item-meta.status-warning {
+    color: var(--warning-primary);
+}
+
+.queue-item-meta.status-complete {
+    color: var(--success-primary);
+}
+
+.queue-item-item-title {
+    font-size: 0.82rem;
+    color: var(--fg-secondary);
+    font-weight: var(--font-weight-medium);
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    transition: all 0.2s ease;
+    margin-top: 0;
+}
+
+.queue-item-item-title.visible {
+    opacity: 1;
+    max-height: 1.5em;
+    margin-top: 2px;
+    padding-bottom: 2px;
+}
+
+/* GTK Expanding Scrollbar */
+::-webkit-scrollbar {
+    width: 0.92rem;
+    /* 12px total track */
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--bg-glass-strong);
+    border-radius: 0.77rem;
+    border: 4px solid transparent;
+    /* Thin by default */
+    background-clip: content-box;
+    transition: var(--transition-standard);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--black-100);
+    border-width: 2px;
+    /* Expand on hover */
+}
+
+/* --- Terminal & Tabs --- */
+
+/* Tab styles simplified via .linked */
+.queue-tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--fg-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Stabilize container sizes to prevent jumping */
+.queue-container,
+.terminal-view {
+    flex: 1;
+    border: 1px solid var(--border-normal);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-primary);
+}
+
+.terminal-view {
+    overflow: hidden;
+    /* Terminal needs hidden */
+}
+
+.queue-container {
+    overflow-y: auto;
+    /* Queue needs scroll */
+}
+
+.terminal-view {
+    background-color: #121212;
+    /* Deeper black for terminal */
+    border-color: #222;
+    contain: layout;
+    will-change: transform, opacity;
+}
+
+.terminal-output {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    line-height: 1.3;
+    scrollbar-gutter: stable;
+}
+
+.log-line {
+    margin-bottom: 0.1rem;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.log-line.system {
+    color: var(--fg-dim);
+    font-style: italic;
+    opacity: 0.7;
+}
+
+.log-stderr {
+    color: var(--strawberry-300);
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div id="splash-screen">
+    <img src="assets/icons/app-icon.svg" class="splash-logo" alt="Chord">
+    <img src="assets/icons/process-working-symbolic.svg" class="splash-spinner" alt="Loading">
+  </div>
+
+  <div class="app-container">
+    <!-- HeaderBar -->
+    <header class="headerbar">
+      <!-- Window Controls (Start/Left) -->
+      <div class="windowcontrols start">
+        <button class="windowcontrol-btn close" id="window-close" title="Close">
+          <img src="assets/icons/window-close-symbolic.svg" alt="Close">
+        </button>
+      </div>
+
+      <div class="headerbar-title">
+        <img src="assets/icons/app-icon-24.svg" alt="Chord">
+        <span>Chord</span>
+      </div>
+
+      <!-- Right Side Controls -->
+      <div class="headerbar-end">
+        <!-- Settings Button -->
+        <button class="btn btn-flat btn-icon" id="settings-btn" title="Settings">
+          <img src="assets/icons/settings.svg" class="icon-sm" alt="Settings">
+        </button>
+
+        <!-- Window Controls (End/Right) -->
+        <div class="windowcontrols end">
+          <button class="windowcontrol-btn minimize" id="window-minimize" title="Minimize">
+            <img src="assets/icons/window-minimize-symbolic.svg" alt="Minimize">
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Dynamic Components Placeholder -->
+    <div id="dynamic-content" style="display: contents;"></div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+  </div>
+
+  <script type="module" src="main.ts"></script>
+</body>
+
+</html>

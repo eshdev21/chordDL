@@ -1,0 +1,238 @@
+/* Buttons - GTK Style */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-family: inherit;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--fg-primary);
+    background-color: var(--bg-primary);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+    background-clip: padding-box;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-gtk-outset);
+    cursor: pointer;
+    transition: var(--transition-standard);
+    -webkit-app-region: no-drag;
+}
+
+.btn:hover {
+    background-color: var(--bg-glass);
+}
+
+.btn:active {
+    background-color: var(--bg-glass-strong);
+    background-image: none;
+    box-shadow: var(--shadow-inset);
+}
+
+.btn:focus-visible {
+    outline: 2px solid rgba(54, 137, 230, 0.4);
+    outline-offset: 1px;
+    border-color: var(--accent-primary);
+}
+
+.btn.active {
+    background-color: var(--bg-primary);
+    background-image: none;
+    box-shadow: var(--shadow-inset);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Window Controls */
+.windowcontrols {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    -webkit-app-region: no-drag;
+}
+
+.windowcontrol-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.85rem;
+    /* ~24px */
+    height: 1.85rem;
+    border-radius: var(--radius-round);
+    border: none;
+    background: transparent;
+    cursor: default;
+    transition: all 0.2s ease;
+}
+
+.windowcontrol-btn img {
+    width: 1.23rem;
+    /* ~16px */
+    height: 1.23rem;
+    opacity: 0.75;
+}
+
+.windowcontrol-btn:hover {
+    background-color: var(--bg-glass);
+}
+
+.windowcontrol-btn:hover img {
+    opacity: 1;
+}
+
+.windowcontrol-btn:active {
+    background-color: var(--bg-glass-strong);
+}
+
+.windowcontrol-btn.close:hover {
+    background-color: var(--error-primary);
+}
+
+.windowcontrol-btn.close:hover img {
+    filter: brightness(0) invert(1);
+}
+
+/* Linked / Grouped Buttons - Unified Logic */
+.linked {
+    display: inline-flex;
+    vertical-align: middle;
+    background-color: var(--bg-glass);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-normal);
+    overflow: hidden;
+}
+
+/* Target both .btn and .queue-tab within .linked */
+.linked>.btn,
+.linked>button,
+.linked>.queue-tab {
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    box-shadow: none;
+    background: transparent;
+    position: relative;
+}
+
+.linked>*:not(:last-child) {
+    border-right: 1px solid var(--border-normal);
+}
+
+.linked>.active {
+    background-color: var(--bg-glass-strong);
+    color: var(--fg-primary);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.linked>*:hover:not(.active) {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* Switcher Overrides - simplified because of .linked */
+.mode-switcher {
+    margin-bottom: var(--spacing-sm);
+}
+
+.media-type-switcher {
+    margin-bottom: var(--spacing-sm);
+    margin-right: var(--spacing-md);
+    align-self: flex-start;
+}
+
+.media-type-switcher .btn {
+    padding: var(--spacing-xs) var(--spacing-lg);
+    font-size: var(--font-size-sm);
+}
+
+.media-type-switcher .btn img {
+    opacity: 0.75;
+}
+
+.media-type-switcher .btn.active img {
+    opacity: 1;
+}
+
+/* Button Variants */
+.btn-suggested {
+    background-color: var(--accent-primary);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+    color: var(--fg-on-accent);
+    border-color: rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-gtk-outset);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.btn-suggested:hover {
+    background-color: var(--accent-hover);
+}
+
+.btn-suggested:active {
+    background-color: var(--accent-hover);
+    background-image: none;
+}
+
+.btn-suggested:disabled {
+    background-color: var(--silver-500);
+    border-color: var(--border-normal);
+}
+
+.btn-destructive {
+    background-color: var(--error-primary);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+    color: var(--fg-on-accent);
+    border-color: rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-gtk-outset);
+}
+
+.btn-destructive:hover {
+    background-color: var(--strawberry-700);
+}
+
+.btn-flat {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.btn-flat:hover {
+    background: var(--bg-glass);
+}
+
+.btn-flat:active {
+    background: var(--bg-glass-strong);
+}
+
+.btn-icon {
+    padding: var(--spacing-xs);
+    min-width: 2.46rem;
+    /* ~32px */
+    min-height: 2.46rem;
+}
+
+.btn-icon img {
+    width: 1.23rem;
+    /* ~16px */
+    height: 1.23rem;
+}
+
+.btn-download {
+    width: 100%;
+    padding: var(--spacing-md);
+    font-size: var(--font-size-md);
+}
+
+.btn-download img {
+    width: 1.54rem;
+    /* ~20px */
+    height: 1.54rem;
+}
+
+
+/* Header Buttons Etched Icon Effect */
+.headerbar .btn img {
+    filter: drop-shadow(var(--icon-shadow-etched));
+}
