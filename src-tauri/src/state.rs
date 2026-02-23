@@ -350,39 +350,49 @@ impl AppState {
 
     /// Persist the current download state to the database.
     pub fn persist_downloads(&self, _app: &AppHandle) {
-        let inner = self.inner.lock().unwrap_or_else(|e| e.into_inner());
-        let db_arc = match inner.db.as_ref() {
-            Some(d) => Arc::clone(d),
-            None => return,
+        let payload = {
+            let inner = self.inner.lock().unwrap_or_else(|e| e.into_inner());
+            match inner.db.as_ref() {
+                Some(db) => {
+                    let tasks: Vec<DownloadTask> = inner
+                        .downloads
+                        .values()
+                        .filter(|t| t.status.is_persisted())
+                        .cloned()
+                        .collect();
+                    Some((tasks, Arc::clone(db)))
+                }
+                None => None,
+            }
         };
 
-        let tasks_to_save: Vec<DownloadTask> = inner
-            .downloads
-            .values()
-            .filter(|t| t.status.is_persisted())
-            .cloned()
-            .collect();
-
-        tokio::task::spawn_blocking(move || {
-            let db = db_arc.lock().unwrap_or_else(|e| e.into_inner());
-            for task in tasks_to_save {
-                let _ = db.save_task(&task);
-            }
-        });
+        if let Some((tasks_to_save, db_arc)) = payload {
+            tokio::task::spawn_blocking(move || {
+                let db = db_arc.lock().unwrap_or_else(|e| e.into_inner());
+                for task in tasks_to_save {
+                    let _ = db.save_task(&task);
+                }
+            });
+        }
     }
 
     /// Persist a single task to the database.
     pub fn persist_task(&self, id: &str) {
-        let inner = self.inner.lock().unwrap_or_else(|e| e.into_inner());
-        if let (Some(task), Some(db_arc)) = (inner.downloads.get(id), inner.db.as_ref()) {
-            if task.status.is_persisted() {
-                let task_clone = task.clone();
-                let db_arc_clone = Arc::clone(db_arc);
-                tokio::task::spawn_blocking(move || {
-                    let db = db_arc_clone.lock().unwrap_or_else(|e| e.into_inner());
-                    let _ = db.save_task(&task_clone);
-                });
+        let payload = {
+            let inner = self.inner.lock().unwrap_or_else(|e| e.into_inner());
+            match (inner.downloads.get(id), inner.db.as_ref()) {
+                (Some(task), Some(db)) if task.status.is_persisted() => {
+                    Some((task.clone(), Arc::clone(db)))
+                }
+                _ => None,
             }
+        };
+
+        if let Some((task_clone, db_arc_clone)) = payload {
+            tokio::task::spawn_blocking(move || {
+                let db = db_arc_clone.lock().unwrap_or_else(|e| e.into_inner());
+                let _ = db.save_task(&task_clone);
+            });
         }
     }
 
