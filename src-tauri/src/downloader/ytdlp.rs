@@ -142,6 +142,7 @@ pub async fn run_ytdlp(
 
         if let Some(new_title) = title_update {
             current_title = new_title.clone();
+            last_filename = new_title.clone(); // ← ADD THIS LINE
             event_bus.emit(crate::events::AppEvent::TitleChanged {
                 id: task_id.to_string(),
                 title: new_title,
@@ -190,6 +191,17 @@ pub async fn run_ytdlp(
                 }
                 if eta == "Unknown" {
                     *eta = "---".to_string();
+                }
+            }
+
+            // Capture final filename from Merger line (video downloads)
+            // This overwrites the audio-stream destination, giving us the true merged output file
+            if let DownloadStatus::Merging {
+                playlist: Some(ref meta),
+            } = status
+            {
+                if !meta.item_title.is_empty() && meta.item_title != "Downloading..." {
+                    last_filename = meta.item_title.clone();
                 }
             }
 

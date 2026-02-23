@@ -99,7 +99,7 @@ pub fn load_config_from_disk(app: &tauri::AppHandle) -> (AppConfig, bool) {
         }
 
         // Sanitize and persist if needed
-        if sanitize_config(&mut config) {
+        if sanitize_config(&mut config) && !is_fresh {
             if let Some(parent) = path.parent() {
                 let _ = fs::create_dir_all(parent);
             }

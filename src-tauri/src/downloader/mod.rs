@@ -120,6 +120,12 @@ pub async fn download_single(app: AppHandle, request: DownloadRequest) -> AppRes
     let workspace = prepare_workspace(&app, &task_id)?;
     let workspace_str = workspace.to_string_lossy().to_string();
 
+    // Guard: abort if task was cancelled before it even entered the queue
+    if !is_task_runnable(&state, &task_id) {
+        let _ = std::fs::remove_dir_all(&workspace);
+        return Ok(task_id);
+    }
+
     let auth_enabled = state
         .inner
         .lock()
@@ -298,24 +304,33 @@ pub async fn download_single(app: AppHandle, request: DownloadRequest) -> AppRes
                     },
                 });
 
-                let workspace_root = std::path::Path::new(&workspace_str_clone);
-                let destination_root = std::path::Path::new(&output_dir);
+                let workspace_owned = std::path::PathBuf::from(&workspace_str_clone);
+                let destination_owned = std::path::PathBuf::from(&output_dir);
 
-                if copy_dir_all(workspace_root, destination_root).is_ok() {
-                    let _ = std::fs::remove_dir_all(workspace_root);
-                    event_bus.emit(crate::events::AppEvent::DownloadStateChanged {
-                        id: task_id_clone.clone(),
-                        status: DownloadStatus::Completed { filename },
-                    });
-                } else {
-                    event_bus.emit(crate::events::AppEvent::DownloadStateChanged {
-                        id: task_id_clone.clone(),
-                        status: DownloadStatus::Failed {
-                            reason: "Finalizing error: File copy failed".into(),
-                            progress: 100.0,
-                            category: crate::error::ErrorCategory::Generic,
-                        },
-                    });
+                let workspace_for_cleanup = workspace_owned.clone();
+                let copy_result = tokio::task::spawn_blocking(move || {
+                    copy_dir_all(&workspace_owned, &destination_owned)
+                        .and_then(|_| std::fs::remove_dir_all(&workspace_for_cleanup))
+                })
+                .await;
+
+                match copy_result {
+                    Ok(Ok(_)) => {
+                        event_bus.emit(crate::events::AppEvent::DownloadStateChanged {
+                            id: task_id_clone.clone(),
+                            status: DownloadStatus::Completed { filename },
+                        });
+                    }
+                    _ => {
+                        event_bus.emit(crate::events::AppEvent::DownloadStateChanged {
+                            id: task_id_clone.clone(),
+                            status: DownloadStatus::Failed {
+                                reason: "Finalizing error: File copy failed".into(),
+                                progress: 100.0,
+                                category: crate::error::ErrorCategory::Generic,
+                            },
+                        });
+                    }
                 }
             }
             Err(e) => {
