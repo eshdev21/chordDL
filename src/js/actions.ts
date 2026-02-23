@@ -156,7 +156,10 @@ export async function handleDownload() {
     if (mode === 'batch') {
         // Batch not supported for auth retry logic yet in this simple plan, just run loop
         for (const url of urls) {
-            await Downloader.downloadSingle(url, mediaType, format, quality, "", false, null);
+            const result = await Downloader.downloadSingle(url, mediaType, format, quality, "", false, null);
+            if (result && !result.success) {
+                UI.showToast(`Failed: ${url.substring(0, 40)}...`, 'error');
+            }
         }
         UI.clearInput();
         return;
