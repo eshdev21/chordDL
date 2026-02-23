@@ -10,6 +10,7 @@ pub fn build_ytdlp_args(
     is_playlist: bool,
     workspace_path: PathBuf,
     cookies_enabled: bool,
+    concurrent_fragments: usize,
 ) -> Vec<String> {
     let mut args: Vec<String> = Vec::new();
 
@@ -115,7 +116,7 @@ pub fn build_ytdlp_args(
         "--socket-timeout".to_string(),
         "30".to_string(),
         "--concurrent-fragments".to_string(),
-        "4".to_string(),
+        concurrent_fragments.to_string(),
         "--impersonate".to_string(),
         "chrome".to_string(),
         "--extractor-retries".to_string(),

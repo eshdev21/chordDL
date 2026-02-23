@@ -63,6 +63,7 @@ export interface AppConfig {
     video_quality: string;
     default_format: string;
     max_concurrent_downloads: number;
+    concurrent_fragments: number;
     cookies_enabled: boolean;
     custom_deps: boolean;
     debug_logging: boolean;

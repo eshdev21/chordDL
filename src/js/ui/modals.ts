@@ -9,6 +9,7 @@ const modals = {
         elements.settingsBtn?.addEventListener('click', () => {
             elements.settingsModal?.classList.remove('hidden');
             this.updateSliderFill(elements.concurrentLimitSlider);
+            this.updateSliderFill(elements.fragmentsSlider);
             invoke('check_deps_status').catch(() => { });
         });
 
@@ -30,6 +31,16 @@ const modals = {
                 this.updateSliderFill(target);
                 if (elements.concurrentLimitValue) {
                     elements.concurrentLimitValue.textContent = target.value;
+                }
+            });
+        }
+
+        if (elements.fragmentsSlider) {
+            elements.fragmentsSlider.addEventListener('input', (e: Event) => {
+                const target = e.target as HTMLInputElement;
+                this.updateSliderFill(target);
+                if (elements.fragmentsValue) {
+                    elements.fragmentsValue.textContent = target.value;
                 }
             });
         }

@@ -115,6 +115,16 @@ export function setupEventListeners(checkDependencies: () => Promise<void>) {
         await updateConfig({ max_concurrent_downloads: val });
     });
 
+    // Concurrent fragments slider
+    UI.elements.fragmentsSlider.addEventListener('input', () => {
+        UI.elements.fragmentsValue.textContent = UI.elements.fragmentsSlider.value;
+    });
+
+    UI.elements.fragmentsSlider.addEventListener('change', async () => {
+        const val = parseInt(UI.elements.fragmentsSlider.value);
+        await updateConfig({ concurrent_fragments: val });
+    });
+
     if (UI.elements.settingsCheckAuthBtn) {
         UI.elements.settingsCheckAuthBtn.addEventListener('click', checkCookieStatus);
     }

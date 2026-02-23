@@ -91,6 +91,8 @@ const elements = {
 
     get concurrentLimitSlider() { return document.getElementById('concurrent-limit-slider') as HTMLInputElement; },
     get concurrentLimitValue() { return document.getElementById('concurrent-limit-value') as HTMLElement; },
+    get fragmentsSlider() { return document.getElementById('fragments-slider') as HTMLInputElement; },
+    get fragmentsValue() { return document.getElementById('fragments-value') as HTMLElement; },
 
     // Confirmation Modal
     get confirmModal() { return document.getElementById('confirm-modal') as HTMLElement; },

@@ -126,11 +126,12 @@ pub async fn download_single(app: AppHandle, request: DownloadRequest) -> AppRes
         return Ok(task_id);
     }
 
-    let auth_enabled = state
+    let (auth_enabled, concurrent_fragments) = state
         .inner
         .lock()
-        .map(|i| i.config.cookies_enabled)
-        .unwrap_or(false);
+        .map(|i| (i.config.cookies_enabled, i.config.concurrent_fragments))
+        .unwrap_or((false, 2));
+
     let args = args::build_ytdlp_args(
         &app,
         request.url.clone(),
@@ -140,6 +141,7 @@ pub async fn download_single(app: AppHandle, request: DownloadRequest) -> AppRes
         request.is_playlist,
         workspace,
         auth_enabled,
+        concurrent_fragments,
     );
 
     // 6. Create/Update Task in State

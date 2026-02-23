@@ -24,6 +24,7 @@ interface UIType {
     hideAllGlobalProgress: typeof views.hideAllGlobalProgress;
     showToast: (message: string, type?: 'info' | 'warning' | 'error' | 'success' | 'critical', options?: { duration?: number; actions?: { label: string; onClick: () => void }[] }) => void;
     showConfirm: typeof modals.showConfirm;
+    updateSliderFill: typeof modals.updateSliderFill;
     renderTask: (task: DownloadTask, skipScroll?: boolean) => void;
     updateProgress: (id: string, progress: number, speed: string, eta: string, title?: string, itemTitle?: string) => void;
     updateTaskStatus: (id: string, statusType: TaskStatus | string) => void;
@@ -85,6 +86,7 @@ const UI: UIType = {
     // Methods from modals
     showToast: modals.showToast,
     showConfirm: modals.showConfirm,
+    updateSliderFill: modals.updateSliderFill.bind(modals),
 
     // Methods from queue (pure DOM operations)
     renderTask: queue.renderTask.bind(queue),

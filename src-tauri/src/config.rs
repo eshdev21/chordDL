@@ -26,6 +26,8 @@ pub struct AppConfig {
     pub video_quality: String,
     #[serde(default = "default_max_concurrent")]
     pub max_concurrent_downloads: usize,
+    #[serde(default = "default_fragments")]
+    pub concurrent_fragments: usize,
     #[serde(default)]
     pub cookies_enabled: bool,
     #[serde(default = "default_false")]
@@ -45,6 +47,7 @@ impl Default for AppConfig {
             video_format: default_video_format(),
             video_quality: default_video_quality(),
             max_concurrent_downloads: default_max_concurrent(),
+            concurrent_fragments: default_fragments(),
             cookies_enabled: false,
             debug_logging: false,
             custom_deps: false,
@@ -71,6 +74,10 @@ fn default_video_quality() -> String {
 
 fn default_max_concurrent() -> usize {
     3
+}
+
+fn default_fragments() -> usize {
+    2
 }
 
 /// Get config file path using Tauri's standard resolver
@@ -120,6 +127,11 @@ fn sanitize_config(config: &mut AppConfig) -> bool {
     // Fix 0 concurrency (which blocks downloads forever)
     if config.max_concurrent_downloads == 0 {
         config.max_concurrent_downloads = default_max_concurrent();
+        changed = true;
+    }
+
+    if config.concurrent_fragments == 0 || config.concurrent_fragments > 4 {
+        config.concurrent_fragments = default_fragments();
         changed = true;
     }
 

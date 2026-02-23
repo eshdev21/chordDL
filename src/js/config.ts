@@ -71,6 +71,14 @@ export async function applyConfigToUI(config: AppConfig) {
     if (config.max_concurrent_downloads) {
         UI.elements.concurrentLimitSlider.value = config.max_concurrent_downloads.toString();
         UI.elements.concurrentLimitValue.textContent = config.max_concurrent_downloads.toString();
+        UI.updateSliderFill(UI.elements.concurrentLimitSlider);
+    }
+
+    // Apply concurrent fragments
+    if (config.concurrent_fragments && UI.elements.fragmentsSlider) {
+        UI.elements.fragmentsSlider.value = config.concurrent_fragments.toString();
+        UI.elements.fragmentsValue.textContent = config.concurrent_fragments.toString();
+        UI.updateSliderFill(UI.elements.fragmentsSlider);
     }
 
     // Sync Cookie Toggle
