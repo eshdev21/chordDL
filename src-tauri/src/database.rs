@@ -1,15 +1,18 @@
 use crate::error::{AppError, AppResult};
+use crate::logger::Logger;
+
 use crate::state::{DownloadStatus, DownloadTask};
 use rusqlite::{params, Connection};
 use tauri::{AppHandle, Manager};
 
 pub struct Db {
     pub conn: Connection,
+    pub logger: Logger,
 }
 
 impl Db {
     /// Initialize a fresh database (delete existing if present)
-    pub fn init_fresh(app: &AppHandle) -> AppResult<Self> {
+    pub fn init_fresh(app: &AppHandle, logger: Logger) -> AppResult<Self> {
         let app_local_dir = app
             .path()
             .app_local_data_dir()
@@ -24,10 +27,10 @@ impl Db {
                 .map_err(|e| AppError::Database(format!("Failed to delete old DB: {}", e)))?;
         }
 
-        Self::new(app)
+        Self::new(app, logger)
     }
 
-    pub fn new(app: &AppHandle) -> AppResult<Self> {
+    pub fn new(app: &AppHandle, logger: Logger) -> AppResult<Self> {
         let app_local_dir = app
             .path()
             .app_local_data_dir()
@@ -74,7 +77,7 @@ impl Db {
         // 4. Indexing for performance (Duplicate checks)
         let _ = conn.execute("CREATE INDEX IF NOT EXISTS idx_tasks_url ON tasks(url)", []);
 
-        Ok(Self { conn })
+        Ok(Self { conn, logger })
     }
 
     /// Helper to safely add a column if it's missing
@@ -131,7 +134,10 @@ impl Db {
         );
 
         if let Err(e) = &result {
-            eprintln!("Failed to save task {} to database: {}", task.id, e);
+            self.logger.log_app(
+                "ERROR",
+                &format!("Failed to save task {} to database: {}", task.id, e),
+            );
         }
 
         result.map_err(|e| AppError::Database(format!("Operation failed: {}", e)))?;
@@ -144,7 +150,10 @@ impl Db {
             .execute("DELETE FROM tasks WHERE id = ?1", params![id]);
 
         if let Err(e) = &result {
-            eprintln!("Failed to delete task {} from database: {}", id, e);
+            self.logger.log_app(
+                "ERROR",
+                &format!("Failed to delete task {} from database: {}", id, e),
+            );
         }
 
         result.map_err(|e| AppError::Database(format!("Operation failed: {}", e)))?;

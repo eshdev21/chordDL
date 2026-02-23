@@ -109,9 +109,9 @@ pub fn run() {
 
             // 2. Initialize database (fresh or existing)
             let db_result = if is_fresh {
-                crate::database::Db::init_fresh(handle)
+                crate::database::Db::init_fresh(handle, state.logger.clone())
             } else {
-                crate::database::Db::new(handle)
+                crate::database::Db::new(handle, state.logger.clone())
             };
 
             match db_result {
@@ -120,7 +120,9 @@ pub fn run() {
                         Some(Arc::new(Mutex::new(db)));
                 }
                 Err(e) => {
-                    eprintln!("Failed to initialize database: {}", e);
+                    state
+                        .logger
+                        .log_app("ERROR", &format!("Failed to initialize database: {}", e));
                 }
             }
 

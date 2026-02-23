@@ -1,6 +1,6 @@
 use std::fs::{File, OpenOptions};
 use std::io::Write;
-use std::sync::Mutex;
+use std::sync::{Arc, Mutex};
 use tauri::{AppHandle, Manager};
 
 pub struct LogState {
@@ -9,9 +9,10 @@ pub struct LogState {
 }
 
 /// Core logging engine for managing application and engine-specific logs.
+#[derive(Clone)]
 pub struct Logger {
-    app_log: Mutex<LogState>,
-    ytdlp_log: Mutex<LogState>,
+    app_log: Arc<Mutex<LogState>>,
+    ytdlp_log: Arc<Mutex<LogState>>,
 }
 
 fn rotate_log_if_needed(path: &std::path::Path, max_size: u64) {
@@ -35,14 +36,14 @@ fn rotate_log_if_needed(path: &std::path::Path, max_size: u64) {
 impl Logger {
     pub fn new() -> Self {
         Self {
-            app_log: Mutex::new(LogState {
+            app_log: Arc::new(Mutex::new(LogState {
                 enabled: false,
                 file: None,
-            }),
-            ytdlp_log: Mutex::new(LogState {
+            })),
+            ytdlp_log: Arc::new(Mutex::new(LogState {
                 enabled: false,
                 file: None,
-            }),
+            })),
         }
     }
 
