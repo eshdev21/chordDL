@@ -5,7 +5,7 @@
 # Chord
 
 <p align="center">
-  <strong>A simple yt-dlp wrapper for personal use</strong><br>
+  <strong>A simple yt-dlp wrapper made for personal use</strong><br>
   Built with Rust, Tauri, and Vanilla JavaScript.
 </p>
 
@@ -26,9 +26,7 @@
 
 ---
 
-Chord is a humble, practical wrapper for the incredible `yt-dlp` project. It was originally created for personal use to make it easier to access `yt-dlp`'s powerful downloading capabilities through a simple desktop interface.
-
-This project exists solely because of the hard work put in by the `yt-dlp` team. Chord handles the UI and some local plumbing, but all the heavy lifting and media extraction genius is provided entirely by `yt-dlp`.
+Chord is a simple `yt-dlp` wrapper made in Tauri. It is a lightweight wrapper made for personal use. Big thanks to the `yt-dlp` team for their amazing engine that does all the heavy lifting.
 
 > [!IMPORTANT]
 > **Alpha Build**: This project is currently in Alpha. 
