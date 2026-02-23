@@ -211,7 +211,9 @@ const Downloader = {
                 video_quality: '1080',
                 default_format: 'm4a',
                 max_concurrent_downloads: 3,
+                concurrent_fragments: 3,
                 cookies_enabled: false,
+                write_subs: false,
                 custom_deps: false,
                 debug_logging: false,
                 setup_shown: true
