@@ -150,7 +150,7 @@ export async function handleDownload() {
     const mediaType = UI.getMediaType();
     const mode = UI.getCurrentMode();
 
-    const isPlaylist = !!(urls[0]?.includes('list=') || urls[0]?.includes('playlist'));
+    const isPlaylist = (mode === 'playlist');
     let result;
 
     if (mode === 'batch') {

@@ -49,8 +49,8 @@ pub enum AppError {
     #[error("Cancelled")]
     Cancelled,
 
-    #[error("Playlist URL detected. Please switch to Playlist mode.")]
-    PlaylistUrlInSingleMode,
+    #[error("YouTube Mixes are endless auto-generated playlists and are not supported. Please use a regular playlist URL.")]
+    RadioMixNotSupported,
 }
 
 impl Serialize for AppError {
@@ -82,7 +82,7 @@ impl AppError {
         match self {
             AppError::YtDlpLoginRequired
             | AppError::YtDlpBrowserLock
-            | AppError::PlaylistUrlInSingleMode
+            | AppError::RadioMixNotSupported
             | AppError::YtDlpRateLimited => ErrorSeverity::Warning,
             AppError::YtDlpUnavailable
             | AppError::YtDlpNetworkError
@@ -108,8 +108,8 @@ impl AppError {
             AppError::YtDlpUnavailable => {
                 "This video is unavailable (region-locked or private).".to_string()
             }
-            AppError::PlaylistUrlInSingleMode => {
-                "This is a playlist URL — switch to Playlist mode.".to_string()
+            AppError::RadioMixNotSupported => {
+                "YouTube Mixes are endless auto-generated playlists and are not supported. Please use a regular playlist URL.".to_string()
             }
             _ => self.to_string(),
         }

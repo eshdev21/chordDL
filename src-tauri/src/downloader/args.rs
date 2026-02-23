@@ -98,7 +98,7 @@ pub fn build_ytdlp_args(
             .to_string(),
         "--output".to_string(),
         if is_playlist {
-            "%(playlist_title|%(channel|%(uploader|Unknown)s)s)s/%(title)s.%(ext)s".to_string()
+            "%(playlist_title,channel,uploader|Unknown)s/%(title)s.%(ext)s".to_string()
         } else {
             "%(title)s.%(ext)s".to_string()
         },

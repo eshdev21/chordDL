@@ -68,16 +68,15 @@ export function handleAppError(error: unknown) {
         });
     }
 
-    // Always add Copy Details
-    actions.push({
-        label: 'Copy Details',
-        onClick: () => copyErrorDetails({ message, category })
-    });
 
     // Clean message
     let cleanMsg = message.replace('yt-dlp error: ', '').replace('internal error: ', '');
     cleanMsg = cleanMsg.split('\n')[0];
     if (cleanMsg.length > 100) cleanMsg = `${cleanMsg.substring(0, 100)}...`;
+
+    if (cleanMsg.includes('YouTube Mixes are endless')) {
+        severity = 'warning';
+    }
 
     UI.showToast(cleanMsg, severity, { actions });
 }
@@ -102,16 +101,3 @@ function normalizeSeverity(rawSeverity: AppErrorPayload['severity']): 'info' | '
     return 'error';
 }
 
-/**
- * Format and copy error details to clipboard
- */
-function copyErrorDetails(error: { message: string; category: string }) {
-    const timestamp = new Date().toLocaleString();
-    const details = `Error: ${error.message}\nCategory: ${error.category}\nTime: ${timestamp}\nApp: Chord v2.0`;
-
-    navigator.clipboard.writeText(details).then(() => {
-        UI.showToast('Error details copied to clipboard', 'info', { duration: 2000 });
-    }).catch(err => {
-        console.error('Failed to copy details:', err);
-    });
-}

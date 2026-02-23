@@ -5,7 +5,6 @@ use crate::state::{AppState, DownloadStatus, DownloadTask};
 use std::path::PathBuf;
 use std::sync::Arc;
 use tauri::{AppHandle, Manager};
-use url::Url;
 use uuid::Uuid;
 
 pub mod args;
@@ -18,6 +17,10 @@ pub mod ytdlp;
 pub use cleanup::cleanup_orphans;
 pub use cookies::check_firefox_auth;
 pub use init::{get_active_downloads, initialize_app};
+
+fn is_radio_mix(url: &str) -> bool {
+    (url.contains("youtube.com") || url.contains("youtu.be")) && url.contains("list=RD")
+}
 
 // --- Configuration Constants ---
 
@@ -54,15 +57,9 @@ pub async fn download_single(app: AppHandle, request: DownloadRequest) -> AppRes
         return Err(AppError::Internal("URL cannot be empty".to_string()));
     }
 
-    // 2b. Block pure playlist URLs in single mode
-    if !request.is_playlist {
-        if let Ok(parsed) = Url::parse(&request.url) {
-            let has_list = parsed.query_pairs().any(|(k, _)| k == "list");
-            let has_video = parsed.query_pairs().any(|(k, _)| k == "v");
-            if has_list && !has_video {
-                return Err(AppError::PlaylistUrlInSingleMode);
-            }
-        }
+    // 2b. Block RD Mixes in Playlist Mode
+    if request.is_playlist && is_radio_mix(&request.url) {
+        return Err(AppError::RadioMixNotSupported);
     }
 
     // 3. CHECK FOR EXISTING STATE (Race Condition Fix)
