@@ -1,6 +1,7 @@
 use crate::dependencies::{get_deno_path, get_ffmpeg_path};
 use std::path::PathBuf;
 
+#[allow(clippy::too_many_arguments)]
 pub fn build_ytdlp_args(
     app: &tauri::AppHandle,
     url: String,

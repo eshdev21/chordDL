@@ -140,7 +140,7 @@ async fn perform_auth_check(app: &AppHandle, state: &AppState) -> AppResult<Stri
     }
 
     let status_code = child.wait().await.map_err(crate::error::AppError::Io)?;
-    let _ = stdout_handle
+    stdout_handle
         .await
         .map_err(|e| crate::error::AppError::Internal(e.to_string()))?;
 

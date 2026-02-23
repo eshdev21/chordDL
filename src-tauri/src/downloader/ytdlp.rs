@@ -440,23 +440,22 @@ fn parse_ytdlp_output_line(
     // These often don't have a uniform prefix like "[PostProcess]", but specific tool prefixes.
     // [FixupM4a], [MetadataParser], etc.
     // Checking for '[' at start is a good heuristic.
-    if line.starts_with('[') {
-        if POSTPROCESS_RE
+    if line.starts_with('[')
+        && POSTPROCESS_RE
             .get_or_init(|| {
                 Regex::new(r"^\[(?:ExtractAudio|FixupM4a|Fixup|ModifyChapters|EmbedThumbnail|MetadataParser)\]")
                     .unwrap()
             })
             .is_match(line)
-        {
-            status_update = Some(DownloadStatus::Merging {
-                playlist: Some(crate::state::PlaylistMetadata {
-                    current_index: 0,
-                    total_items: 0,
-                    item_title: current_title.to_string(),
-                }),
-            });
-            return (title_update, status_update);
-        }
+    {
+        status_update = Some(DownloadStatus::Merging {
+            playlist: Some(crate::state::PlaylistMetadata {
+                current_index: 0,
+                total_items: 0,
+                item_title: current_title.to_string(),
+            }),
+        });
+        return (title_update, status_update);
     }
 
     // Fallback: Check for "Destination:" without [download] prefix (rare but possible in some versions/configs?)

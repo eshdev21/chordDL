@@ -87,12 +87,10 @@ impl Db {
             .map_err(|e| AppError::Database(e.to_string()))?;
 
         let mut exists = false;
-        for col in columns {
-            if let Ok(c) = col {
-                if c == name {
-                    exists = true;
-                    break;
-                }
+        for c in columns.flatten() {
+            if c == name {
+                exists = true;
+                break;
             }
         }
 
