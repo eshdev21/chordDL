@@ -77,18 +77,20 @@ pub fn start_global_listener(app: AppHandle) {
     let mut rx = state.event_bus.subscribe();
 
     tauri::async_runtime::spawn(async move {
+        let state = app.state::<AppState>();
         loop {
             let event = match rx.recv().await {
                 Ok(e) => e,
                 Err(tokio::sync::broadcast::error::RecvError::Lagged(n)) => {
-                    eprintln!("Event bus lagged, {} messages dropped", n);
+                    state
+                        .logger
+                        .log_app("WARN", &format!("Event bus lagged, {} messages dropped", n));
                     continue;
                 }
                 Err(tokio::sync::broadcast::error::RecvError::Closed) => break,
             };
 
             let app = app.clone();
-            let state = app.state::<AppState>();
 
             match &*event {
                 AppEvent::DownloadCreated {
