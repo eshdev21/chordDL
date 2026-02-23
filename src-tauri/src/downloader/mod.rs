@@ -395,7 +395,7 @@ fn is_task_runnable(state: &AppState, task_id: &str) -> bool {
     state
         .get_task(task_id)
         .map(|t| matches!(t.status, DownloadStatus::Queued))
-        .unwrap_or(false)
+        .unwrap_or(true)
 }
 
 fn handle_download_error(state: &AppState, task_id: &str, e: AppError) {
