@@ -65,6 +65,7 @@ export interface AppConfig {
     max_concurrent_downloads: number;
     concurrent_fragments: number;
     cookies_enabled: boolean;
+    write_subs: boolean;
     custom_deps: boolean;
     debug_logging: boolean;
     setup_shown: boolean;

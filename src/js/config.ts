@@ -90,6 +90,10 @@ export async function applyConfigToUI(config: AppConfig) {
         UI.elements.customDepsToggle.checked = config.custom_deps === true;
     }
 
+    if (UI.elements.writeSubsToggle) {
+        UI.elements.writeSubsToggle.checked = config.write_subs === true;
+    }
+
     // Download button state is always safe now, backend handles cookies
     UI.setDownloadButtonState('safe');
 }

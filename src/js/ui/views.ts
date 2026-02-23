@@ -122,6 +122,10 @@ const views = {
             elements.customDepsToggle.checked = config.custom_deps;
         }
 
+        if (elements.writeSubsToggle) {
+            elements.writeSubsToggle.checked = config.write_subs;
+        }
+
         // Toggle visibility of version info/update buttons in custom mode
         const updateButtons = [
             elements.settingsUpdateBtn,

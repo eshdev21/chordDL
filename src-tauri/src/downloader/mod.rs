@@ -126,11 +126,17 @@ pub async fn download_single(app: AppHandle, request: DownloadRequest) -> AppRes
         return Ok(task_id);
     }
 
-    let (auth_enabled, concurrent_fragments) = state
+    let (auth_enabled, concurrent_fragments, write_subs) = state
         .inner
         .lock()
-        .map(|i| (i.config.cookies_enabled, i.config.concurrent_fragments))
-        .unwrap_or((false, 2));
+        .map(|i| {
+            (
+                i.config.cookies_enabled,
+                i.config.concurrent_fragments,
+                i.config.write_subs,
+            )
+        })
+        .unwrap_or((false, 2, true));
 
     let args = args::build_ytdlp_args(
         &app,
@@ -142,6 +148,7 @@ pub async fn download_single(app: AppHandle, request: DownloadRequest) -> AppRes
         workspace,
         auth_enabled,
         concurrent_fragments,
+        write_subs,
     );
 
     // 6. Create/Update Task in State

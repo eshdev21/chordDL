@@ -32,6 +32,8 @@ pub struct AppConfig {
     pub cookies_enabled: bool,
     #[serde(default = "default_false")]
     pub debug_logging: bool,
+    #[serde(default = "default_false")]
+    pub write_subs: bool,
     #[serde(default)]
     pub custom_deps: bool,
     #[serde(default)]
@@ -50,6 +52,7 @@ impl Default for AppConfig {
             concurrent_fragments: default_fragments(),
             cookies_enabled: false,
             debug_logging: false,
+            write_subs: false,
             custom_deps: false,
             setup_shown: false,
         }

@@ -12,6 +12,7 @@ pub fn build_ytdlp_args(
     workspace_path: PathBuf,
     cookies_enabled: bool,
     concurrent_fragments: usize,
+    write_subs: bool,
 ) -> Vec<String> {
     let mut args: Vec<String> = Vec::new();
 
@@ -89,6 +90,7 @@ pub fn build_ytdlp_args(
     args.extend([
         "--embed-metadata".to_string(),
         "--embed-thumbnail".to_string(),
+        "--no-embed-info-json".to_string(),
         "--download-archive".to_string(),
         workspace_path
             .join("archive.txt")
@@ -130,6 +132,15 @@ pub fn build_ytdlp_args(
         r"[\U00010000-\U0010ffff]".to_string(),
         "".to_string(),
     ]);
+
+    if write_subs && media_type == "video" {
+        args.extend([
+            "--write-subs".to_string(),
+            "--write-auto-subs".to_string(),
+            "--sub-format".to_string(),
+            "srt/vtt/best".to_string(),
+        ]);
+    }
 
     // Use Firefox cookies directly (ONLY if cookies are enabled)
     if cookies_enabled {

@@ -77,6 +77,7 @@ const elements = {
     get settingsVideoPathText() { return document.getElementById('settings-video-path-text') as HTMLElement; },
     get settingsCheckAuthBtn() { return document.getElementById('settings-check-auth-btn') as HTMLButtonElement; },
     get authEnabledToggle() { return document.getElementById('auth-enabled-toggle') as HTMLInputElement; },
+    get writeSubsToggle() { return document.getElementById('write-subs-toggle') as HTMLInputElement; },
     get customDepsToggle() { return document.getElementById('custom-deps-toggle') as HTMLInputElement; },
     get debugLoggingToggle() { return document.getElementById('debug-logging-toggle') as HTMLInputElement; },
     get openLogsBtn() { return document.getElementById('open-logs-btn') as HTMLButtonElement; },

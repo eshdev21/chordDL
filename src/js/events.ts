@@ -135,6 +135,13 @@ export function setupEventListeners(checkDependencies: () => Promise<void>) {
             await updateConfig({ cookies_enabled: val });
         });
     }
+
+    if (UI.elements.writeSubsToggle) {
+        UI.elements.writeSubsToggle.addEventListener('change', async (e: Event) => {
+            const val = (e.target as HTMLInputElement).checked;
+            await updateConfig({ write_subs: val });
+        });
+    }
 }
 
 /**
