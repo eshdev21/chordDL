@@ -23,7 +23,7 @@
 
 ---
 
-Chord is a lightweight `yt-dlp` wrapper built using Tauri and Rust, designed for simple local video and playlist downloads.
+Chord is a simple `yt-dlp` wrapper built using Tauri and Rust, designed for local video and playlist downloads.
 
 ## 📸 Screenshots
 
@@ -39,7 +39,7 @@ Chord is a lightweight `yt-dlp` wrapper built using Tauri and Rust, designed for
 
 ## ✨ Features
 
-- ⚡ **Lightweight & Fast**: Minimal footprint built on Rust and Tauri.
+- 📦 **Small Installer**: Minimal download size by leveraging native OS webviews.
 - 🍪 **Cookie Integration**: Pull session cookies from your browser for restricted links.
 - 📜 **Playlist & Batch Support**: Download complete playlists or queue multiple links.
 - ⚙️ **Self-Healing**: Automated management of `yt-dlp` and `ffmpeg` binaries.
