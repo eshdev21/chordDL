@@ -19,48 +19,11 @@
   <a href="https://github.com/eshdev21/chordDL/releases/latest">
     <img src="https://img.shields.io/badge/Download-Latest_Release-blue?style=for-the-badge&logo=github" alt="Download Latest Release">
   </a>
-  <a href="https://github.com/eshdev21/chordDL/releases">
-    <img src="https://img.shields.io/badge/Releases-All_Versions-lightgrey?style=for-the-badge&logo=github" alt="All Releases">
-  </a>
 </p>
 
 ---
 
-Chord is a simple `yt-dlp` wrapper made in Tauri. It is a lightweight wrapper made for personal use. Big thanks to the `yt-dlp` team for their amazing engine that does all the heavy lifting.
-
-> [!IMPORTANT]
-> **Alpha Build**: This project is currently in Alpha. 
-> Development for **macOS** and **Linux** is ongoing and currently untested.
-
-<table>
-  <tr>
-    <td><img src="assets/icons/ai-generated.svg" width="48" alt="AI Generated"></td>
-    <td><strong>AI Generated Code</strong><br>Note: This project was vibe coded and AI was used to generate the code.</td>
-  </tr>
-</table>
-
-## ✨ Features
-
-<table>
-  <tr>
-    <td><img src="assets/icons/download.svg" width="48"></td>
-    <td><strong>Lightweight & Fast</strong><br>Minimal resource usage thanks to the Rust/Tauri backbone.</td>
-    <td><img src="assets/icons/auth.svg" width="48"></td>
-    <td><strong>yt-dlp Cookie Integration</strong><br>Leverages yt-dlp's powerful cookie features to pull session data from browsers for restricted content.</td>
-  </tr>
-  <tr>
-    <td><img src="assets/icons/resume.svg" width="48"></td>
-    <td><strong>Resumable Downloads</strong><br>Uses yt-dlp's robust engine to automatically handle network interruptions.</td>
-    <td><img src="assets/icons/terminal.svg" width="48"></td>
-    <td><strong>Self-Healing</strong><br>Automated management of <code>yt-dlp</code> and <code>ffmpeg</code> binaries.</td>
-  </tr>
-</table>
-
-### More Features
-- 📜 **Playlist Support**: Granular control over playlists, powered by `yt-dlp`.
-- 📦 **Batch Downloads**: Paste multiple URLs and process them sequentially.
-- 🧩 **EJS Challenge Solving**: Integrated **Deno** runtime allows `yt-dlp` to execute YouTube's complex JavaScript challenges locally.
-- 🔒 **Privacy First**: All processing and authentication happens locally on your machine.
+Chord is a lightweight `yt-dlp` wrapper built using Tauri and Rust, designed for simple local video and playlist downloads.
 
 ## 📸 Screenshots
 
@@ -74,32 +37,20 @@ Chord is a simple `yt-dlp` wrapper made in Tauri. It is a lightweight wrapper ma
   <img src="assets/screenshots/Untitled(3).png" width="30%" alt="Terminal Logs">
 </p>
 
-## 🏗️ Tech Stack
+## ✨ Features
 
-- **Backend**: [Rust](https://www.rust-lang.org/)
-- **Framework**: [Tauri 2.0](https://tauri.app/)
-- **Frontend**: HTML5, CSS3, Vanilla JavaScript / TypeScript
-- **Runtime**: [Deno](https://deno.com/) (Embedded for EJS challenge solving)
-- **Engine**: [yt-dlp](https://github.com/yt-dlp/yt-dlp)
-- **Processor**: [FFmpeg](https://ffmpeg.org/)
+- ⚡ **Lightweight & Fast**: Minimal footprint built on Rust and Tauri.
+- 🍪 **Cookie Integration**: Pull session cookies from your browser for restricted links.
+- 📜 **Playlist & Batch Support**: Download complete playlists or queue multiple links.
+- ⚙️ **Self-Healing**: Automated management of `yt-dlp` and `ffmpeg` binaries.
 
-## 🛠️ Installation (Windows)
+## 🛠️ Installation
 
 1. Download the latest installer from the [Releases](https://github.com/eshdev21/chordDL/releases) page.
-2. Run the `.exe` and follow the instructions.
-3. Chord will automatically download the necessary dependencies (`yt-dlp`, `ffmpeg`) on first launch.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please check the issues page or submit a pull request.
+2. Run the `.exe` (Chord will automatically fetch `yt-dlp` and `ffmpeg` on first launch).
 
 ## 📜 License
 
-Licensed under the [GPLv3 License](LICENSE).
+GPLv3.
 
-## 🤝 Acknowledgments
-
-- **[yt-dlp](https://github.com/yt-dlp/yt-dlp)**: Huge thanks to the `yt-dlp` team! This app is just a front for their incredible engine. We are deeply grateful for their continuous work on the most powerful media extraction tool in existence.
-- **[elementary OS](https://elementary.io/)**: For the beautiful icon set and design inspiration from their stylesheet.
-- **[elementary Icons](https://github.com/elementary/icons)**: The source of the elegant iconography used throughout the app.
 
